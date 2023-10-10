@@ -1,0 +1,27 @@
+{
+  "name": "arcanoid",
+  "version": "0.0.7",
+  "description": "Phaser JS Game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sos7ya/arcanoid.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sos7ya/arcanoid/issues"
+  },
+  "homepage": "https://github.com/Sos7ya/arcanoid#readme",
+  "devDependencies": {
+    "@babel/core": "^7.22.11",
+    "@babel/preset-env": "^7.22.14",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^3.0.2"
+  }
+}
