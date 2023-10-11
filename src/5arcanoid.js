@@ -14,7 +14,7 @@ var gameOffsetY = 10; // Смещение игровой области по о�
 
 var cellWidth = 146;
 var cellHeight = 67;
-var game_version = "v 0.1.5";
+var game_version = "v 0.1.5s";
 var zero ={
     x: 460,
     y: 125
