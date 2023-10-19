@@ -21,7 +21,6 @@ window.addEventListener('load', function() {
     ];
 
     var eventHandler = function(evt) {
-      console.log(evt.type, evt.target, evt.detail);
       if(evt.type == 'sn:enter-down'){
         scenepause.gameToggle()
         mainmenu.gameToggle()
@@ -29,7 +28,7 @@ window.addEventListener('load', function() {
         gameOver.gameToggle()
       }
       //document.getElementById('divlog').innerHTML += evt.detail.direction + '\n';
-      switch(evt.detail.direction){
+      switch(evt.detail?.direction){
         case 'up':
           mainmenu.selectorUp()
           scenepause.selectorUp()

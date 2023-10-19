@@ -122,9 +122,22 @@ class GameOver extends Phaser.Scene{
     startGame(){
         gameState.isOver = false
         gameState.score = 0
-        startGame.gameSessionId = uid();
-        startGame.allGameSessionId = sessionID;
-        window?.parent.postMessage(startGame, '*');
+
+        try{
+                startGame.gameSessionId = generateUUID();
+                startGame.allGameSessionId = sessionID;
+                window?.parent.postMessage(startGame, '*');
+            }
+            
+            catch(er){
+                var startGameError = {
+                    action: 'startGameError',
+                    allGameSessionId : sessionID,
+                    gameSessionId: gameId,
+                    timeStamp: Date.now()
+                }
+                window?.parent.postMessage(startGameError, '*');
+            }
         this.scene.start(arcanoid)
     }
     exit(){

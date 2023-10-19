@@ -97,7 +97,7 @@ class MainMenu extends Phaser.Scene{
     startGame(){
         gameState.onMenu = false
         this.bgMusik.play();
-        startGame.gameSessionId = uid();
+        startGame.gameSessionId = generateUUID();
         startGame.allGameSessionId = sessionID;
         window?.parent.postMessage(startGame, '*');
         this.scene.start('arcanoid')

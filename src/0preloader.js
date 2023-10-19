@@ -3,6 +3,14 @@ class Preloader extends Phaser.Scene{
         super({key:'preloader'})
     }
     preload(){
+        try{
+            let startDownloading = {
+                action: 'startDownloading',
+                allGameSessionId: sessionID,
+                timeStamp: Date.now()
+            }
+            window?.parent.postMessage(startDownloading, '*');
+
         this.loadText = this.add.text(game.config.width / 2, game.config.height / 2, "Загрузка...", {
             fontFamily: 'Rubik-Medium',
             fontSize: 64,
@@ -95,7 +103,32 @@ class Preloader extends Phaser.Scene{
         this.load.audio('win', 'assets/sounds/win.mp3');
         this.load.audio('lost', 'assets/sounds/lost.mp3');
     }
+    catch(er){
+        let startDownloadingError = {
+            action: 'startDownloadingError',
+            allGameSessionId: sessionID,
+            timeStamp: Date.now()
+        }
+        window?.parent.postMessage(startDownloadingError, '*');
+    }
+    }
     create(){
+        try{
+            let finishDownload = {
+                action: 'finishDownload',
+                allGameSessionId: sessionID,
+                timeStamp: Date.now()
+            }
+            window?.parent.postMessage(finishDownload, '*')
+        }
+        catch(er){
+            let downloadError = {
+                action: 'downloadError',
+                allGameSessionId: sessionID,
+                timeStamp: Date.now()
+            }
+            window?.parent.postMessage(downloadError, '*')
+        }
         this.scene.start('mainmenu')
     }
 }
