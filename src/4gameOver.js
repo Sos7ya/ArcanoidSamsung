@@ -14,6 +14,8 @@ class GameOver extends Phaser.Scene{
 
         window?.parent.postMessage(gameOver, '*');
 
+        posted = false;
+
         gameState.isOver = true
         gameState.onGame = false
         this.gameOverBg = this.add.image(game.config.width / 2, game.config.height / 2, 'pauseBg').setOrigin(0.5)
@@ -142,13 +144,16 @@ class GameOver extends Phaser.Scene{
     }
     exit(){
         if(gameState.isOver){
-            let closeGameSession = {
-                action: 'closeGameSession',
-                allGameSessionId : sessionID,
-                timeStamp : Date.now()
+            if(!posted){
+                let closeGameSession = {
+                    action: 'closeGameSession',
+                    allGameSessionId : sessionID,
+                    timeStamp : Date.now()
+                }
+        
+                window?.parent.postMessage(closeGameSession, '*');
+                posted = true;
             }
-    
-            window?.parent.postMessage(closeGameSession, '*');
         }
     }
 }

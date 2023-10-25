@@ -11,6 +11,7 @@ class MainMenu extends Phaser.Scene{
     }
 
     create(){
+        posted = false;
         gameState.onMenu = true
         this.mainBg = this.add.image(game.config.width / 2, game.config.height / 2, 'mainBg').setOrigin(0.5)
         this.mainBg.setDisplaySize(game.config.width, game.config.height)
@@ -104,13 +105,16 @@ class MainMenu extends Phaser.Scene{
     }
     exit(){
         if(gameState.onMenu){
-            let closeGameSession = {
-                action: 'closeGameSession',
-                allGameSessionId : sessionID,
-                timeStamp : Date.now()
+            if(!posted){
+                let closeGameSession = {
+                    action: 'closeGameSession',
+                    allGameSessionId : sessionID,
+                    timeStamp : Date.now()
+                }
+                
+                window?.parent.postMessage(closeGameSession, '*');
+                posted = true;
             }
-    
-            window?.parent.postMessage(closeGameSession, '*');
         }
     }
 

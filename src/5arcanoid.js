@@ -11,10 +11,10 @@ var gameWidth = 1532; // Ширина игровой области
 var gameHeight = 1060; // Высота игровой области
 var gameOffsetX = 350; // Смещение игровой области по оси X
 var gameOffsetY = 10; // Смещение игровой области по оси Y
-
+var posted = false;
 var cellWidth = 146;
 var cellHeight = 67;
-var game_version = "v 0.2.2s";
+var game_version = "v 0.2.3s";
 var zero ={
     x: 460,
     y: 125
