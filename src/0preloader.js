@@ -120,6 +120,8 @@ class Preloader extends Phaser.Scene{
                 timeStamp: Date.now()
             }
             window?.parent.postMessage(finishDownload, '*')
+            this.scene.start('mainmenu')
+
         }
         catch(er){
             let downloadError = {
@@ -129,7 +131,6 @@ class Preloader extends Phaser.Scene{
             }
             window?.parent.postMessage(downloadError, '*')
         }
-        this.scene.start('mainmenu')
     }
 }
 
