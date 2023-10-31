@@ -12,7 +12,7 @@ class GameOver extends Phaser.Scene{
             timeStamp : Date.now()
         }
 
-        window?.parent.postMessage(gameOver, '*');
+        window?.parent.postMessage(gameOver, parentOrigin);
 
         posted = false;
 
@@ -115,7 +115,6 @@ class GameOver extends Phaser.Scene{
                 this.startGame()
             }
             else if(this.selector.y == this.btnClose.y){
-                window?.parent.postMessage('gameOver', '*')
                 this.exit()
             }
         }
@@ -128,7 +127,7 @@ class GameOver extends Phaser.Scene{
         try{
                 startGame.gameSessionId = generateUUID();
                 startGame.allGameSessionId = sessionID;
-                window?.parent.postMessage(startGame, '*');
+                window?.parent.postMessage(startGame, parentOrigin);
             }
             
             catch(er){
@@ -138,7 +137,7 @@ class GameOver extends Phaser.Scene{
                     gameSessionId: gameId,
                     timeStamp: Date.now()
                 }
-                window?.parent.postMessage(startGameError, '*');
+                window?.parent.postMessage(startGameError, parentOrigin);
             }
         this.scene.start(arcanoid)
     }
@@ -151,7 +150,7 @@ class GameOver extends Phaser.Scene{
                     timeStamp : Date.now()
                 }
         
-                window?.parent.postMessage(closeGameSession, '*');
+                window?.parent.postMessage(closeGameSession, parentOrigin);
                 posted = true;
             }
         }

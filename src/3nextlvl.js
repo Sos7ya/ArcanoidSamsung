@@ -12,7 +12,7 @@ class NextLvl extends Phaser.Scene{
         score : gameState.score,
         timeStamp : Date.now()
         }
-        window?.parent.postMessage(levelUp, '*');
+        window?.parent.postMessage(levelUp, parentOrigin);
 
         this.sceneBG = this.add.image(game.config.width/2, game.config.height/2, 'background-9').setOrigin(0.5);
         this.sceneBG.setDisplaySize(game.config.width, game.config.height);

@@ -14,12 +14,12 @@ var gameOffsetY = 10; // Смещение игровой области по о�
 var posted = false;
 var cellWidth = 146;
 var cellHeight = 67;
-var game_version = "v 0.2.3s";
+var game_version = "v 0.2.7s";
 var zero ={
     x: 460,
     y: 125
 }
-
+var parentOrigin;
 var sessionID
 var gameId = generateUUID();
 
@@ -51,13 +51,21 @@ window.onload = function(){
 }
 
 sessionID = generateUUID();
+
+if(document.referrer){
+    parentOrigin = document.referrer
+    console.log(parentOrigin);
+}
+else{
+    parentOrigin = '*';
+}
 try{
     var startGameSession = {
       action: 'startGameSession',
       allGameSessionId: sessionID,
       timeStamp: Date.now()
     }
-    window?.parent.postMessage(startGameSession, '*');
+    window?.parent.postMessage(startGameSession, parentOrigin);
   }
   
   catch(er){
@@ -66,7 +74,7 @@ try{
       allGameSessionId: sessionID,
       timeStamp: Date.now()
     }
-    window?.parent.postMessage(startGameSessionError, '*');
+    window?.parent.postMessage(startGameSessionError, parentOrigin);
   }
 game = new Phaser.Game(config)
 }

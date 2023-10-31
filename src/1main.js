@@ -100,7 +100,7 @@ class MainMenu extends Phaser.Scene{
         this.bgMusik.play();
         startGame.gameSessionId = generateUUID();
         startGame.allGameSessionId = sessionID;
-        window?.parent.postMessage(startGame, '*');
+        window?.parent.postMessage(startGame, parentOrigin);
         this.scene.start('arcanoid')
     }
     exit(){
@@ -112,7 +112,7 @@ class MainMenu extends Phaser.Scene{
                     timeStamp : Date.now()
                 }
                 
-                window?.parent.postMessage(closeGameSession, '*');
+                window?.parent.postMessage(closeGameSession, parentOrigin);
                 posted = true;
             }
         }
